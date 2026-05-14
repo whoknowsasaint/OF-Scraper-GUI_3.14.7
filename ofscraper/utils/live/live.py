@@ -6,7 +6,7 @@ live = Live(
     transient=False,
     refresh_per_second=1,
     console=console_.get_shared_console(),
-    auto_refresh=True,
+    auto_refresh=False, 
 )
 
 

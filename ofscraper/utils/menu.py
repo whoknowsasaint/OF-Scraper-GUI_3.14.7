@@ -32,7 +32,10 @@ def main_menu_action():
     log.debug("[bold deep_sky_blue2] Running Prompt Menu Mode[/bold deep_sky_blue2]")
     scapingManager = scraperManager()
     while True:
-        console.get_shared_console().clear_live()
+        try:
+            console.get_shared_console().clear_live()
+        except IndexError:
+            pass
         try:
             result_main_prompt = prompts.main_prompt()
             if result_main_prompt == "action":
@@ -138,3 +141,4 @@ def reset_menu_helper():
     elif reset == "Like":
         actions.remove_like_area()
     manager.Manager.current_model_manager.prepare_scraper_activity()
+    

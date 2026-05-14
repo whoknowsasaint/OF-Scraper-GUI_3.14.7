@@ -69,3 +69,8 @@ wiki/
 docs/
 
 repomix-output*
+
+
+# GUI ADDITIONS
+cdm_keys/
+OF-Scraper-GUI.spec

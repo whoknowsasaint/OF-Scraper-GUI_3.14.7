@@ -45,6 +45,29 @@ async def get_models(all_main_models: bool = False) -> list:
         f"Final retrieved models ({len(parsed_subscriptions)}): {[model.name for model in parsed_subscriptions]}"
     )
     
+    # ── Prevent Activity Progress spam after fetch ────────────────────────────
+    # Clear the task description so the display renders nothing on next refresh,
+    # then stop the live display entirely. This must happen HERE (inside the
+    # fetch function) not outside — the action loop restarts the display after
+    # any external kill.
+    try:
+        activity.update_task(description="")
+    except Exception:
+        pass
+    try:
+        import ofscraper.utils.console as _console_mod
+        _c = _console_mod.get_shared_console()
+        _stack = getattr(_c, '_live_stack', [])
+        while _stack:
+            _item = _stack[-1]
+            _stack.pop()
+            try:
+                if getattr(_item, 'is_started', False):
+                    _item.stop()
+            except Exception:
+                pass
+    except Exception:
+        pass
     return parsed_subscriptions
 async def get_via_main_list(count):
     out = []

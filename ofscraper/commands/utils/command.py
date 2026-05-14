@@ -46,7 +46,7 @@ class CommandManager:
 
     async def _gather_user_first_data(self, userdata: list, session, data_func):
         """
-        Phase 1 of user-first mode: Gathers all data for all users.
+         of user-first mode: Gathers all data for all users.
         """
         progress_updater.activity.update_user(
             description="Users with Data Retrieved", total=len(userdata), visible=True
@@ -73,7 +73,7 @@ class CommandManager:
 
     async def _execute_user_first_actions(self, userdata: dict, action_func):
         """
-        Phase 2 of user-first mode: Executes actions on the gathered data.
+         of user-first mode: Executes actions on the gathered data.
         """
         progress_updater.activity.update_user(
             description="Users with Action Completed",

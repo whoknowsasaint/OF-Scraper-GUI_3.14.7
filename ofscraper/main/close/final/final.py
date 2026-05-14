@@ -21,3 +21,4 @@ def final_action():
     manager.Manager.stats_manager.print_summary_by_activity()
     manager.Manager._stats_manager.print_global_summary()
     printEndValues()
+   

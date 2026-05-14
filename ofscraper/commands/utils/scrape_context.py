@@ -40,3 +40,4 @@ Started At:  [bold]{str(arrow.get(start).format("YYYY-MM-DD hh:mm:ss"))}[/bold]
 Finished At:  [bold]{str(arrow.get(end).format("YYYY-MM-DD hh:mm:ss"))}[/bold]
 ===========================
 """)
+

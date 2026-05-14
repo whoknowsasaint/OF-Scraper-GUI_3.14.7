@@ -46,6 +46,12 @@ def model_selector(models: Union[dict | list], existing_models) -> bool:
         if name in selectedSet:
             model.enabled = True
 
+    # Dump all model names to temp file so GUI can read them instantly
+    import json, os, tempfile
+    _tmp = os.path.join(tempfile.gettempdir(), 'ofscraper_models.json')
+    with open(_tmp, 'w') as _f:
+        json.dump([c.name if hasattr(c, 'name') else c.value if hasattr(c, 'value') else str(c) for c in choices], _f)
+
     p = promptClasses.getFuzzySelection(
         choices=choices,
         transformer=lambda result: ",".join(map(lambda x: x.split(" ")[1], result)),

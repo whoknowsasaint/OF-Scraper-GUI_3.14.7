@@ -65,7 +65,7 @@ class MetadataCommandManager(CommandManager):
     @run_async
     async def metadata_user_first(self, userdata, session):
         """Processes metadata in user-first mode."""
-        # Phase 1: Gather data for all users firstprocess_users_normal
+        # Gather data for all users firstprocess_users_normal
         progress_updater.activity.update_overall(visible=True, total=2)
         data = await self._gather_user_first_data(
             userdata, session, self._get_metadata_for_user

@@ -165,36 +165,36 @@ class scraperManager(CommandManager):
 
 
 def main():
-    with progress_utils.stop_live_screen(clear="all"):
-        try:
-            print_start()
-            paths.temp_cleanup()
-            paths.cleanDB()
-            network.check_cdm()
-
-            scrapper()
-            paths.temp_cleanup()
-            paths.cleanDB()
-        except KeyboardInterrupt:
+        with progress_utils.stop_live_screen(clear="all"):
             try:
-                with exit.DelayedKeyboardInterrupt():
-                    paths.temp_cleanup()
-                    paths.cleanDB()
+                print_start()
+                paths.temp_cleanup()
+                paths.cleanDB()
+                network.check_cdm()
+
+                scrapper()
+
+                paths.temp_cleanup()
+                paths.cleanDB()
+            except KeyboardInterrupt:
+                try:
+                    with exit.DelayedKeyboardInterrupt():
+                        paths.temp_cleanup()
+                        paths.cleanDB()
+                        raise KeyboardInterrupt
+                except KeyboardInterrupt:
                     raise KeyboardInterrupt
-            except KeyboardInterrupt:
-                raise KeyboardInterrupt
-        except Exception as E:
-            try:
-                with exit.DelayedKeyboardInterrupt():
-                    paths.temp_cleanup()
-                    paths.cleanDB()
-                    log.traceback_(E)
-                    log.traceback_(traceback.format_exc())
-                    raise E
-            except KeyboardInterrupt:
-                with exit.DelayedKeyboardInterrupt():
-                    raise E
-
+            except Exception as E:
+                try:
+                    with exit.DelayedKeyboardInterrupt():
+                        paths.temp_cleanup()
+                        paths.cleanDB()
+                        log.traceback_(E)
+                        log.traceback_(traceback.format_exc())
+                        raise E
+                except KeyboardInterrupt:
+                    with exit.DelayedKeyboardInterrupt():
+                        raise E
 
 # commands/scraper/scraper.py
 
@@ -261,6 +261,8 @@ def process_selected_areas():
     log.debug("[bold deep_sky_blue2] Running Action Mode [/bold deep_sky_blue2]")
     scrapingManager = scraperManager()
     scrapingManager.runner()
+
+    
     while True:
         if not data.get_InfiniteLoop() or prompts.continue_prompt() == "No":
             break

@@ -750,7 +750,7 @@ class LauncherBar(QWidget):
         al = QLabel('args:'); al.setStyleSheet('color:#8b949e;font-size:9pt;'); lay.addWidget(al)
         self.args_input = QLineEdit(); self.args_input.setObjectName('args_input')
         self.args_input.setPlaceholderText(
-            'blank = main menu  —  or:  -u username  /  -0 username timeline -1')
+            'blank = main menu -  or:  -u username  /  --action download -u username')
         self.args_input.returnPressed.connect(self._on_launch); lay.addWidget(self.args_input, stretch=1)
         self.launch_btn = QPushButton('Launch'); self.launch_btn.setObjectName('btn_launch')
         self.launch_btn.clicked.connect(self._on_launch); lay.addWidget(self.launch_btn)

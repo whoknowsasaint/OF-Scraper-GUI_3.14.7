@@ -109,7 +109,7 @@ OF-Scraper/
 
 ---
 
-![Model Selector](screenshots/screenshot-models.png)
+![Model Selector](screenshots/Screenshot-models.png)
 ![Filter Working](screenshots/Screenshot-filter.png)
 ![Download Progress](screenshots/Screenshot-download.png)
 
